@@ -16,6 +16,9 @@
     },
     "mock-backend": {
       "tags": []
+    },
+    "api": {
+      "tags": []
     }
   }
 }
