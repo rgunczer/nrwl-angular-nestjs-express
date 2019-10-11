@@ -32,6 +32,7 @@
   "devDependencies": {
     "@angular/cli": "8.3.3",
     "@nrwl/angular": "^8.6.0",
+    "@nrwl/express": "^8.6.0",
     "@nrwl/node": "^8.6.0",
     "@nrwl/workspace": "8.6.0",
     "@types/node": "~8.9.4",
