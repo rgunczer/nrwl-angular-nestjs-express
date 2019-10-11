@@ -116,6 +116,60 @@
           }
         }
       }
+    },
+    "mock-backend": {
+      "root": "apps/mock-backend",
+      "sourceRoot": "apps/mock-backend/src",
+      "projectType": "application",
+      "prefix": "mock-backend",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/mock-backend",
+            "main": "apps/mock-backend/src/main.ts",
+            "tsConfig": "apps/mock-backend/tsconfig.app.json",
+            "assets": ["apps/mock-backend/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/mock-backend/src/environments/environment.ts",
+                  "with": "apps/mock-backend/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "mock-backend:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/mock-backend/tsconfig.app.json",
+              "apps/mock-backend/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/mock-backend/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/mock-backend/jest.config.js",
+            "tsConfig": "apps/mock-backend/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
